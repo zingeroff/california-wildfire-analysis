@@ -42,4 +42,29 @@ We identified 77 records with missing year values and excluded them from further
 
 We identified year values ranging from 1878 to 2023. However, older records (before 1980) are sparse and less consistent. Therefore, we decided to limit our analysis to the period from 1980 to 2023 to ensure more accurate and actionable insights.
 
+## Step 3: Yearly Fire Summary (1980–2023)
+
+To better understand the recent history of wildfires, we focused our analysis on data from 1980 to 2023. The query below calculates:
+
+- The number of wildfire events per year
+- The average size of fires in acres
+- The total burned area per year
+
+```sql
+SELECT 
+  YEAR_ AS year,
+  COUNT(*) AS fire_count,
+  ROUND(AVG(GIS_ACRES), 2) AS avg_fire_size_acres,
+  ROUND(SUM(GIS_ACRES), 2) AS total_burned_acres
+FROM 
+  wildfires
+WHERE 
+  YEAR_ >= 1980
+  AND YEAR_ <= 2023
+  AND GIS_ACRES IS NOT NULL
+GROUP BY 
+  YEAR_
+ORDER BY 
+  YEAR_ ASC;
+
 
