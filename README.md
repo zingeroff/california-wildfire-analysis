@@ -67,4 +67,7 @@ GROUP BY
 ORDER BY 
   YEAR_ ASC;
 
+We saved the result of this query as `yearly_fire_summary.csv` and placed it in the `data/` folder for use in Power BI.
+
+
 
