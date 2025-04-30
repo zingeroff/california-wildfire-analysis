@@ -1,0 +1,5 @@
+Source: California Fire Perimeters
+Publisher: California Natural Resources Agency
+Accessed via: https://data.cnra.ca.gov/dataset/california-fire-perimeters-all
+Downloaded as: California_Fire_Perimeters_(all).csv
+Date Accessed: April 30, 2025
