@@ -27,3 +27,19 @@ This GitHub repository contains all files related to the project. It includes:
 
 In this step, we created this GitHub repository and added this README file to track all work.
 
+## Step 2: Data Source and Import
+
+We used the official California state open data portal to obtain wildfire perimeter data from 1950 to present.
+
+- Source: https://data.cnra.ca.gov/dataset/california-fire-perimeters-all
+- File used: California_Fire_Perimeters_(all).csv
+
+We renamed the file to `wildfires.csv` and imported it into a new SQLite database called `wildfire_analysis.db` using DB Browser for SQLite.
+
+The imported table is called `wildfires`. This table contains information on the location, size, date, and causes of wildfires across California.
+
+We identified 77 records with missing year values and excluded them from further analysis to ensure accurate time-based trends.
+
+We identified year values ranging from 1878 to 2023. However, older records (before 1980) are sparse and less consistent. Therefore, we decided to limit our analysis to the period from 1980 to 2023 to ensure more accurate and actionable insights.
+
+
