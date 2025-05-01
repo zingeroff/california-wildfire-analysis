@@ -66,7 +66,7 @@ GROUP BY
   YEAR_
 ORDER BY 
   YEAR_ ASC;
-
+```
 
 We saved the result of this query as `yearly_fire_summary.csv` and placed it in the `data/` folder for use in Google Looker Studio.
 
@@ -79,6 +79,6 @@ We used Google Looker Studio to visualize the data from `yearly_fire_summary.csv
 - Dimension: `year`
 - Metric: `fire_count`
 - Title: *Annual Wildfire Count (1980–2023)*
-![Wildfire Count Line Chart](screenshots/Annual Wildfire Count (1980–2023).png)
+![Wildfire Count Line Chart](screenshots/Annual_Wildfire_Count.png)
 This chart helps identify trends in wildfire frequency and detect periods of increase or stability.
 
