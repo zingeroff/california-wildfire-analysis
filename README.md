@@ -9,6 +9,10 @@ This is a data analytics portfolio project using real open data on California wi
 - Data modeling and cleaning
 - Google Looker Studio dashboard creation
 
+  🔗 **Interactive Dashboard**:  
+[View on Looker Studio](https://lookerstudio.google.com/reporting/a5ce0be9-10cc-4fc1-9d36-0308e02f5c2f)
+
+
 The goal is to uncover insights into wildfire trends, damage, and geographic patterns, similar to those handled by CAL FIRE analysts.
 
 ## Tools Used
@@ -248,5 +252,29 @@ GROUP BY CAUSE
 ORDER BY fire_count DESC;
 ```
 
+## Step 6.2: Fire Causes – Count, Percent, and Area
+
+To better understand what causes wildfires in California, we aggregated the dataset by cause code (`CAUSE`) and mapped it to human-readable labels using SQL `CASE`.
+
+We analyzed the number of fires, their average size, and the share of each cause in the total fire count.
+
+### 🔍 Key Metrics:
+- **Fire Count** – how many fires occurred due to each cause
+- **Average Acres Burned** – how large the fires were, on average
+- **Percent of Total** – % share of each cause in the total number of fires
+
+We visualized the results using Looker Studio as three charts on one dashboard:
+
+- 📊 **Bar chart (Top-Right):** Number of Fires by Cause  
+- 🥧 **Pie chart (Bottom-Right):** Share of Total Fires  
+- 📐 **Bar chart (Left):** Average Area Burned by Cause  
+
+These visualizations help identify not only the most frequent causes of wildfires but also the most destructive ones.
+
+![Wildfires by Cause](screenshots/Causes_Count_Percent_Area.png)
+
+
+🔗 **Interactive Dashboard**:  
+[View on Looker Studio](https://lookerstudio.google.com/reporting/a5ce0be9-10cc-4fc1-9d36-0308e02f5c2f)
 
 
