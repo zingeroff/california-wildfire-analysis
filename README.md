@@ -102,5 +102,74 @@ This chart visualizes how the average size of a wildfire changed over time, help
 
 ![Average Fire Size Chart](screenshots/avg_fire_size_chart.png)
 
+## Step 5.1: Geographic Fire Statistics by UNIT_ID
+
+In this step, we calculated key wildfire metrics by administrative fire unit (`UNIT_ID`) and joined the results with their geographic coordinates and full unit names.
+
+This dataset will be used to build an interactive map of California in the next step.
+
+### Metrics computed:
+- `fire_count` – total number of fires per unit
+- `avg_acres` – average burned area (in acres)
+- `avg_duration_days` – average duration from alarm to containment
+- `suppression_efficiency` – average acres burned per suppression day
+- `percent_of_total` – the unit’s share of all fires in the dataset
+- `Latitude / Longitude` – geographic coordinates for map visualization
+- `UNIT_NAME` – readable name of each fire unit
+
+### Output:
+The result was exported to: `data/fires_by_unit.csv`
+
+---
+
+### SQL Query:
+
+```sql
+-- Step 6.1: Calculate fire statistics by UNIT_ID and join with geolocation
+SELECT
+  w.UNIT_ID,
+  g.UNIT_NAME,              -- Full name of the fire protection unit
+  g.Latitude,               -- Geographic center latitude
+  g.Longitude,              -- Geographic center longitude
+  COUNT(*) AS fire_count,   -- Total number of fires
+  ROUND(AVG(w.GIS_ACRES), 2) AS avg_acres,   -- Average burned area (acres)
+
+  -- Average days from alarm to containment (converted from string to date)
+  ROUND(AVG(
+    JULIANDAY(REPLACE(SUBSTR(w.CONT_DATE, 1, 10), '/', '-')) -
+    JULIANDAY(REPLACE(SUBSTR(w.ALARM_DATE, 1, 10), '/', '-'))
+  ), 2) AS avg_duration_days,
+
+  -- Suppression efficiency: total acres divided by total days
+  ROUND(SUM(w.GIS_ACRES) / SUM(
+    JULIANDAY(REPLACE(SUBSTR(w.CONT_DATE, 1, 10), '/', '-')) -
+    JULIANDAY(REPLACE(SUBSTR(w.ALARM_DATE, 1, 10), '/', '-'))
+  ), 2) AS suppression_efficiency,
+
+  -- Share of all fires (in %)
+  ROUND(
+    100.0 * COUNT(*) / (
+      SELECT COUNT(*) 
+      FROM wildfires
+      WHERE GIS_ACRES IS NOT NULL AND ALARM_DATE IS NOT NULL AND CONT_DATE IS NOT NULL
+    ),
+    2
+  ) AS percent_of_total
+
+FROM wildfires AS w
+
+-- Join with unit name and coordinates
+JOIN unit_geo AS g
+  ON w.UNIT_ID = g.UNIT_ID
+
+-- Filter only valid rows with area and dates
+WHERE
+  w.GIS_ACRES IS NOT NULL AND
+  w.ALARM_DATE IS NOT NULL AND
+  w.CONT_DATE IS NOT NULL AND
+  w.UNIT_ID IS NOT NULL
+
+GROUP BY w.UNIT_ID;
+```
 
 
