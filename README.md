@@ -92,4 +92,15 @@ This chart shows the total amount of land burned in California each year, helpin
 
 ![Burned Area Chart](screenshots/total_burned_area_chart.png)
 
+### Chart 3: Average Wildfire Size by Year
+- Type: Line chart
+- Dimension: `year`
+- Metric: `avg_fire_size_acres`
+- Title: *Average Wildfire Size by Year (Acres)*
+
+This chart visualizes how the average size of a wildfire changed over time, helping assess whether individual fire events have become larger or smaller over the years.
+
+![Average Fire Size Chart](screenshots/avg_fire_size_chart.png)
+
+
 
