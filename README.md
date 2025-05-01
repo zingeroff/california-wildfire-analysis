@@ -172,4 +172,26 @@ WHERE
 GROUP BY w.UNIT_ID;
 ```
 
+## Step 5.2: Wildfire Map by Protection Unit (1980–2023)
+
+To visualize geographic patterns in California wildfire activity, we used **Google Looker Studio** to build an interactive map with spatial metrics by protection unit.
+
+- 🔘 **Point size** = number of wildfires (`fire_count`)
+- 🔘 **Point color** = suppression efficiency (`GIS_ACRES / duration`)
+- 📍 Each point is centered on the average location of a `UNIT_ID` area
+
+The map allows us to:
+
+- Identify **high-risk zones** with frequent or large fires
+- Evaluate **efficiency** of suppression operations by region
+- Visually compare **activity density** across California
+
+### Tooltip (on hover) includes:
+- 🔥 Total fires
+- 📐 Avg burned area
+- 🕒 Avg duration (days)
+- 💧 Suppression efficiency (acres per day)
+
+![Wildfire Map](screenshots/wildfire_unit_map.png)
+
 
