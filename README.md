@@ -1,6 +1,3 @@
-# california-wildfire-analysis
-SQL and Looker portfolio project analyzing California wildfire data
-
 # California Wildfire Data Analysis
 
 This is a data analytics portfolio project using real open data on California wildfires. The project demonstrates my skills in:
