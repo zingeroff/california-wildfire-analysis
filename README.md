@@ -195,3 +195,58 @@ The map allows us to:
 ![Wildfire Map](screenshots/wildfire_unit_map.png)
 
 
+## 🔶 Step 6.1: Wildfires by Cause
+
+In this step, we analyzed the reasons behind wildfires by aggregating the total number of fires, average burned area, and percentage of total for each cause category.
+
+We used a `CASE` block in SQL to convert numeric cause codes into readable labels based on CAL FIRE documentation.
+
+### 🔍 Metrics computed:
+- `cause_label` – reason the wildfire started (decoded from the CAUSE column)
+- `fire_count` – total number of fires for each cause
+- `avg_acres` – average burned area (in acres)
+- `percent_of_total` – percentage of all fires caused by this reason
+
+### 💾 Output:
+The result was saved to: `data/fires_by_cause.csv`
+
+---
+
+### 🧠 SQL Query (with cause mapping):
+
+```sql
+-- Step 6.1: Wildfire statistics grouped by decoded cause label
+
+SELECT
+  CASE
+    WHEN CAUSE = 1 THEN 'Lightning'
+    WHEN CAUSE = 2 THEN 'Equipment Use'
+    WHEN CAUSE = 3 THEN 'Smoking'
+    WHEN CAUSE = 4 THEN 'Campfire'
+    WHEN CAUSE = 5 THEN 'Debris'
+    WHEN CAUSE = 6 THEN 'Railroad'
+    WHEN CAUSE = 7 THEN 'Arson'
+    WHEN CAUSE = 8 THEN 'Playing with Fire'
+    WHEN CAUSE = 9 THEN 'Miscellaneous'
+    WHEN CAUSE = 10 THEN 'Vehicle'
+    WHEN CAUSE = 11 THEN 'Powerline'
+    WHEN CAUSE = 12 THEN 'Firefighter Training'
+    WHEN CAUSE = 13 THEN 'Non-Firefighter Training'
+    WHEN CAUSE = 14 THEN 'Unknown'
+    ELSE 'Unclassified'
+  END AS cause_label,
+
+  COUNT(*) AS fire_count,                      -- Total fires by cause
+  ROUND(AVG(GIS_ACRES), 2) AS avg_acres,       -- Avg burned area
+  ROUND(
+    100.0 * COUNT(*) / (SELECT COUNT(*) FROM wildfires WHERE GIS_ACRES IS NOT NULL),
+    2
+  ) AS percent_of_total                        -- Share of total fires
+FROM wildfires
+WHERE GIS_ACRES IS NOT NULL AND CAUSE IS NOT NULL
+GROUP BY CAUSE
+ORDER BY fire_count DESC;
+```
+
+
+
