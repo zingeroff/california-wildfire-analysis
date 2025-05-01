@@ -82,3 +82,14 @@ We used Google Looker Studio to visualize the data from `yearly_fire_summary.csv
 ![Wildfire Count Line Chart](screenshots/Annual_Wildfire_Count.png)
 This chart helps identify trends in wildfire frequency and detect periods of increase or stability.
 
+### Chart 2: Total Burned Area by Year
+- Type: Column chart
+- Dimension: `year`
+- Metric: `total_burned_acres`
+- Title: *Total Burned Area by Year (in Acres)*
+
+This chart shows the total amount of land burned in California each year, helping to visualize the severity of fire seasons over time.
+
+![Burned Area Chart](screenshots/total_burned_area_chart.png)
+
+
