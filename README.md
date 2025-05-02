@@ -6,11 +6,21 @@ This is a data analytics portfolio project using real open data on California wi
 - Data modeling and cleaning
 - Google Looker Studio dashboard creation
 
-  🔗 **Interactive Dashboard**:  
-[View on Looker Studio](https://lookerstudio.google.com/reporting/a5ce0be9-10cc-4fc1-9d36-0308e02f5c2f)
-
 
 The goal is to uncover insights into wildfire trends, damage, and geographic patterns, similar to those handled by CAL FIRE analysts.
+
+## 📌 Conclusion
+
+This project analyzed over 40 years of wildfire data in California (1980–2023), revealing critical trends in fire frequency, area burned, and regional risk levels.
+
+Key takeaways:
+
+- 🔥 The number of wildfires has fluctuated over time, with significant spikes in the late 2010s.
+- 📏 The **average fire size** increased dramatically after 2015, indicating more severe events.
+- 🧭 The **most active fire protection units** (by fire count) are located in Southern and Central California.
+- 🕒 The **suppression efficiency** varies significantly across units — some manage to contain fires faster and with less area burned.
+- 🧨 The **top causes** of wildfires are *Unknown*, *Lightning*, and *Equipment Use*, but *Powerline* and *Campfire* fires burn the largest areas on average.
+
 
 ## Tools Used
 - DB Browser for SQLite (SQL engine)
@@ -294,5 +304,5 @@ This project demonstrates end-to-end data analysis workflow:
 
 🔗 **Interactive Dashboard**:  
 [View on Looker Studio](https://lookerstudio.google.com/reporting/a5ce0be9-10cc-4fc1-9d36-0308e02f5c2f)
-
+Note: Log in with google account!
 
